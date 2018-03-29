@@ -1,0 +1,41 @@
+// .form-section {
+//     margin: 0 auto;
+//     background: $grey;
+//     display: flex;
+//     flex-wrap: wrap;
+//     flex-direction: column;
+//     width: 80vw;
+// }
+.form-section {
+    border-radius: 10px;
+    background-color: $grey;
+    padding: 20px;
+    margin: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-item {
+    box-sizing: border-box;
+    flex: 1;
+    padding: $space;  
+}
+
+.form-section_title {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 90vw;
+    text-transform: uppercase; 
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+}

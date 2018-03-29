@@ -1,0 +1,29 @@
+{
+  "name": "short-lnk",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "antd": "^3.2.3",
+    "autosize": "^4.0.0",
+    "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "material-ui": "^1.0.0-beta.27",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "meteor-node-stubs": "^0.3.2",
+    "query-string": "^5.0.1",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.31.5",
+    "react-dom": "^16.2.0",
+    "react-flip-move": "^2.10.0",
+    "react-floating-label-input": "^3.0.5",
+    "react-modal": "^3.1.10",
+    "react-router-dom": "^4.2.2",
+    "react-tap-event-plugin": "^3.0.2",
+    "simpl-schema": "^1.2.0"
+  },
+  "engines": {
+    "node": "8.8.1"
+  }
+}
