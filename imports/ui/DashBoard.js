@@ -19,10 +19,10 @@ class DashBoard extends Component {
     render() {
         return (   
           <MuiThemeProvider theme={theme}>        
-            <div>
+            <div className="page-content" >
                
             <MainNavigationBar title='BAC Comp'/> 
-              
+
             </div>
             </MuiThemeProvider>
         );

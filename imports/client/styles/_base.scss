@@ -10,11 +10,13 @@ html {
 body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: $base-font-size;
+    background-color: $verydark-grey;
 }
 
 h1 {
     font-weight: 300;
     margin-bottom: $space;
+    color: #ffbf00;
 }
 
 h2 {
@@ -24,10 +26,11 @@ h2 {
 
 p {
   margin-bottom: $space;  
+  color: white;
 }
 
 a {
-    color: black;
+    color: lightblue;
 }
 
 input[type=text], input[type=email], input[type=password] {
@@ -35,6 +38,8 @@ input[type=text], input[type=email], input[type=password] {
     font-size: $base-font-size;
     margin-bottom: $space;
     padding: $input-spacing;
+    background: $verydark-grey;
+    color: white;
 }
 
 textarea {

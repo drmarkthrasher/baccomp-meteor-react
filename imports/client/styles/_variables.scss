@@ -3,7 +3,11 @@ $brand-primary: #5b4681;
 $grey: #dddddd;
 $light-grey: #f9f9f9;
 $dark-grey: #777777;
+$verydark-grey: #222222;
 $medium-grey: #f6f6f6;
+
+//new colors for BAC app
+
 
 // Spacing
 $space: 1.4rem;
@@ -14,12 +18,12 @@ $base-font-size: 1.4rem;
 $large-font-size: 1.8rem;
 
 // Form inputs
-$input-border: $grey;
+$input-border: $dark-grey;
 $input-spacing: 1rem;
 
 // Boxed view
-$boxed-view-overlay-bg: $grey;
-$boxed-view-bg: white;
+$boxed-view-overlay-bg: $verydark-grey;
+$boxed-view-bg: $verydark-grey;
 
 //Button
 $button-bg: $brand-primary;
