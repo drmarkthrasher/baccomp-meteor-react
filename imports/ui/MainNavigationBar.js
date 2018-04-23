@@ -77,6 +77,11 @@ const styles = {
         this.closeDrawer();
     }
 
+    gotoGaugeTester = (event) => {
+        history.push('/gaugetester')
+        this.closeDrawer();
+    }
+
 
     render() {
         const { classes } =this.props;  //used if using styles from above
@@ -105,6 +110,7 @@ const styles = {
                         <MenuItem value="Driver" onClick={ this.gotoDriversMain.bind(this)}>Driver</MenuItem>
                         <MenuItem value="Track" onClick={this.gotoTracksMain.bind(this)} >Track</MenuItem>
                         <MenuItem value="Car" onClick={this.gotoCarsMain.bind(this)}>Car</MenuItem>
+                        <MenuItem value="GaugeTester" onClick={this.gotoGaugeTester.bind(this)}>Gauge Tester</MenuItem>
                     </Drawer>
                 </div>
             </MuiThemeProvider>

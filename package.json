@@ -5,10 +5,14 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.44",
+    "@syncfusion/ej2-react-buttons": "^16.1.35",
+    "@syncfusion/ej2-react-circulargauge": "^16.1.32",
     "antd": "^3.2.3",
     "autosize": "^4.0.0",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
+    "indexof": "0.0.1",
     "material-ui": "^1.0.0-beta.27",
     "material-ui-icons": "^1.0.0-beta.17",
     "meteor-node-stubs": "^0.3.2",

@@ -8,6 +8,11 @@ if(Meteor.isServer) {
     Meteor.publish('drivers', function () {
         return Drivers.find({ userId: this.userId });
     })
+
+    // setInterval(function () {
+    //     var date = new Date();
+    //     console.log("Function is running");
+    // }, 1000)
 }
 
 Meteor.methods({

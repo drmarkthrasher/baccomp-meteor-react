@@ -8,9 +8,11 @@
 // }
 .form-section {
     border-radius: 10px;
-    background-color: $grey;
+    background-color: $verydark-grey;
+    color: $soft-blue;
     padding: 20px;
     margin: 20px;
+    font-weight: bold;
 }
 
 .form-row {
@@ -29,16 +31,19 @@
     margin-bottom: 20px;
     width: 90vw;
     text-transform: uppercase; 
+    color: #ffbf00;
 }
 
 .form-input {
+    background: $verydark-grey;
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-weight: 100;
 }
 
 .screenbackground {
-    background: #990000;
+    background: $verydark-grey;
 }

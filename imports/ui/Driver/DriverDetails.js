@@ -113,7 +113,7 @@ class DriverDetails extends Component {
     render() {
         return (
             
-                <div>
+                <div className="screenbackground">
 
                     <div className="form-section">
                         <label>Driver's Name</label>
