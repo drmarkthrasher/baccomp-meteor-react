@@ -8,11 +8,12 @@ $medium-grey: #f6f6f6;
 $soft-blue: #659dbd;
 
 //new colors for BAC app
-
+$primaryfontcolor: #ffbf00;
+$secondaryfontcolor: #659dbd;
 
 // Spacing
 $space: 1.4rem;
-$site-max-width: 50rem;
+$site-max-width: 150rem; 
 
 // Font sizes
 $base-font-size: 1.4rem;
@@ -43,3 +44,4 @@ $header-color: white;
 $item-bg: $light-grey;
 $item-border: darken($item-bg, 18%);
 $item-text-color: $dark-grey;
+

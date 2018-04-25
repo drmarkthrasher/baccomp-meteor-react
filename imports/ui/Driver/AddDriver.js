@@ -50,7 +50,7 @@ class AddDriver extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="page-content">
             <h1>quick fix to add space</h1>
             <h1>quick fix to add space</h1>
                 <button className="button" onClick={() => this.setState({isOpen: true})}>+ Add Driver</button>

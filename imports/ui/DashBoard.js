@@ -21,7 +21,7 @@ class DashBoard extends Component {
           <MuiThemeProvider theme={theme}>        
             <div className="page-content" >
                
-            <MainNavigationBar title='BAC Comp'/> 
+              <MainNavigationBar title='BAC Comp'/> 
             
             </div>
             </MuiThemeProvider>

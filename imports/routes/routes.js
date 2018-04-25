@@ -10,10 +10,11 @@ import Login from '../ui/Login';
 import NotFound from '../ui/NotFound';
 import DriversMain from '../ui/Driver/DriversMain';
 import DriverDetails from '../ui/Driver/DriverDetails';
+import DrinksMain from '../ui/Drink/DrinksMain';
 import GaugeTester from '../ui/GaugeTester';
 
 const unauthenticatedPages = ['/', '/signup'];
-const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','/gaugetester'];
+const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','drinksmain','/gaugetester'];
 
 export const onAuthChange = (isAuthenticated) => {
     const pathname = window.location.pathname;
@@ -35,6 +36,7 @@ export const routes = (
       <Route path="/dashboard" component={DashBoard} />
       <Route path="/driversmain" component={DriversMain}/>
       <Route path="/driverdetails" component={DriverDetails}/>
+      <Route path="/drinksmain" component={DrinksMain}/>
       <Route path="/gaugetester" component={GaugeTester}/>
       <Route component={NotFound}/>
     </Switch>

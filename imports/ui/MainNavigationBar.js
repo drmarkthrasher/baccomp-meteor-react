@@ -67,6 +67,11 @@ const styles = {
         this.closeDrawer();
     }
 
+    gotoDrinksMain = (event) => {
+        history.push('/drinksmain');
+        this.closeDrawer();
+    }
+
     gotoTracksMain = (event) => {
         // history.push('/')
         this.closeDrawer();
@@ -108,6 +113,7 @@ const styles = {
                         <MenuItem value="Home" onClick={this.gotoDashboard.bind(this)}>Home</MenuItem>
                         <Divider/>
                         <MenuItem value="Driver" onClick={ this.gotoDriversMain.bind(this)}>Driver</MenuItem>
+                        <MenuItem value="Drinks" onClick={this.gotoDrinksMain.bind(this)}>Drinks</MenuItem>
                         <MenuItem value="Track" onClick={this.gotoTracksMain.bind(this)} >Track</MenuItem>
                         <MenuItem value="Car" onClick={this.gotoCarsMain.bind(this)}>Car</MenuItem>
                         <MenuItem value="GaugeTester" onClick={this.gotoGaugeTester.bind(this)}>Gauge Tester</MenuItem>

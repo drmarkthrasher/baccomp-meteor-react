@@ -9,7 +9,7 @@
 .form-section {
     border-radius: 10px;
     background-color: $verydark-grey;
-    color: $soft-blue;
+    color: $secondaryfontcolor;
     padding: 20px;
     margin: 20px;
     font-weight: bold;
@@ -31,7 +31,7 @@
     margin-bottom: 20px;
     width: 90vw;
     text-transform: uppercase; 
-    color: #ffbf00;
+    color: $primaryfontcolor;
 }
 
 .form-input {
