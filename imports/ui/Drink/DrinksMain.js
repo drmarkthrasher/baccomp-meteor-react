@@ -9,7 +9,9 @@ class DrinksMain extends Component {
             <div>
                 <MainNavigationBar title="Drink Page"/>
                 <div className="page-content">
+
                     <AddDrink/>
+                    
                 </div>
 
                 

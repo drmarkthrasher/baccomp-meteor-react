@@ -1,29 +1,46 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import DatePicker from 'react-datepicker';
+import TimePicker from 'rc-time-picker';
+import 'rc-time-picker/assets/index.css';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
+
+const divStyle={
+    margin: '50px'
+};
 
 class AddDrink extends Component {
     constructor(props){
         super(props);
+
+        var m = moment();
+
         this.state = {
             isOpen: false,
-            type: 'Beer',
+            type: 'beer',
             description: '',
             volume: 0,
             alcohol: 0,
-            day: 0,
-            month: 0,
-            year: 0,
-            hour: 0,
-            minute: 0,
+            day: m.date(),
+            month: m.month(),
+            year: m.year(),
+            hour: m.hour(),
+            minute: m.minute(),
+            date: moment(),
+            time: moment(),
             error: ''
         }
     }
 
+
+
     componentDidMount() {
-        var d = new Date();
-     console.log(d.getHours());
-     console.log(d.getMinutes());
-     console.log(d.getSeconds());
+    //     var d = new Date();
+    //  console.log(d.getHours());
+    //  console.log(d.getMinutes());
+    //  console.log(d.getSeconds());
 
 
     }
@@ -35,44 +52,47 @@ class AddDrink extends Component {
     onSubmit(e) {
         e.preventDefault();
 
+        
+        var type=this.state.type;
+        var description=this.state.description;
+        var volume=this.state.volume;
+        var alcohol=this.state.alcohol;
+        var day=this.state.day;
+        var month=this.state.month;
+        var year=this.state.year;
+        var hour=this.state.hour;
+        var minute=this.state.minute;
 
-        // const name = this.refs.name.value.trim();
-        const height = '';
-        const weight = '';
-        // const raceTeam = this.refs.raceTeam.value.trim();
-        const raceTeamWebsite = '';
-        const suit = '';
-        const shoes = '';
-        const gloves = '';
-        const helmet = '';
-        const hans = '';
-        const personalNotes = '';
+        // console.log(this.state.type+" "+this.state.description+" "+this.state.volume+" "+this.state.alcohol);
+        // console.log(this.state.day+" "+this.state.month+" "+this.state.year);
+        // console.log(this.state.hour+" "+this.state.minute);
+
     
-        Meteor.call('drivers.insert', name, height, weight, raceTeam, raceTeamWebsite,
-        suit, shoes, gloves, helmet, hans, personalNotes, (err, res) => {
+        Meteor.call('drinks.insert', type, description, volume, alcohol, 
+        day, month, year, hour, minute, (err, res) => {
             if(!err) {
+
                 this.handleModalClose();
             } else {
                 this.setState({ error: err.reason });
             }
         });
 
-        // this.refs.name.value= '';
-        // this.refs.raceTeam.value= '';    
+
     }
 
     handleChange() {
+
+        //this is for change in the input fields
         this.setState({
-            type: 'Something',
+            type: document.getElementById('type').value,
             description: document.getElementById('description').value,
             volume: document.getElementById('volume').value,
-            alcohol: document.getElementById('alcohol').value,
-            // day: document.getElementById('day').value,
-            // month: document.getElementById('month').value,
-            // year: document.getElementById('year').value,
-            hour: document.getElementById('hour').value,
-            minute: document.getElementById('minute').value
+            alcohol: document.getElementById('alcohol').value
         })
+
+
+    
     }
 
     handleModalClose() {
@@ -82,11 +102,37 @@ class AddDrink extends Component {
      }
 
      handleNewDrink() {
-         var d = new Date();
+        // var d = new Date();
+        this.setState({
+            isOpen: true,
+            type: 'beer'
+            // hour: d.getHours(),
+            // minute: d.getMinutes()
+        })
+     }
+
+     onDateChange(date) {
+        
+        var m=moment();
+        m.set({date:date.date(),month:date.month(),year:date.year()})
+        this.setState({
+            date: m,
+            day: date.date(),
+            month: date.month(),
+            year: date.year()
+        })
+
+        
+     }
+
+     onTimeChange(time) {
+
+         var m=moment();
+         m.set({hour:time.hour(),minute:time.minute()})
          this.setState({
-             isOpen: true,
-             hour: d.getHours(),
-             minute: d.getMinutes()
+            time: m,
+            hour: time.hour(),
+            minute: time.minute()
          })
      }
     
@@ -108,10 +154,13 @@ class AddDrink extends Component {
                     {this.state.error ? <p>{this.state.error}</p> : undefined}
 
                     <form onSubmit={this.onSubmit.bind(this)} >
-                    <div className="model-input">
+                    <div className="modal-input">
                     
                     
-                        <select name = "type" style={{marginBottom: 40}} className="modal-selector">
+                        <select id="type" 
+                                style={{marginBottom: 40}} 
+                                className="modal-selector"
+                                onChange={this.handleChange.bind(this)}>
                             <option value="beer" className="modal-selector">Beer</option>
                             <option value="lightbeer">Light Beer</option>
                             <option value="wine">Wine</option>
@@ -144,30 +193,23 @@ class AddDrink extends Component {
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.alcohol}>
                             </input>
-                        
-                            <label className="primaryfont">Date</label>
-                            <input type="date" className='autoExpand form-input'  rows='2' data-min-rows='2'
-                                id="date" 
-                                placeholder=''
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.alcohol}>
-                            </input>
-                        
-                            <label className="primaryfont">Hour</label>
-                            <input className='autoExpand form-input' rows='2' data-min-rows='2'
-                                id="hour" 
-                                placeholder=''
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.hour}>
-                            </input>
 
-                            <label className="primaryfont">Minute</label>
-                            <input className='autoExpand form-input' rows='2' data-min-rows='2'
-                                id="minute" 
-                                placeholder=''
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.minute}>
-                            </input>
+                            <h1 className="addspaceabove"></h1>
+                        
+                            <div className="modal-inlineelements" >
+                                <label className="primaryfont">Date</label>          
+                                <DatePicker onChange={this.onDateChange.bind(this)} 
+                                    selected={this.state.date}></DatePicker>                                               
+                            </div>
+
+                            <div className="modal-inlineelements">
+                                <label className="primaryfont">Time</label>
+                                <TimePicker
+                                    value={this.state.time}
+                                    onChange={this.onTimeChange.bind(this)}
+                                    showSecond={false}
+                                    use12Hours/>  
+                            </div>
                         
 
                         <button className="button">Add Drink</button>

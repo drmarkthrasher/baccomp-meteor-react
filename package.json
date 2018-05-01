@@ -7,6 +7,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.44",
     "@syncfusion/ej2-react-buttons": "^16.1.35",
+    "@syncfusion/ej2-react-calendars": "^16.1.37",
     "@syncfusion/ej2-react-circulargauge": "^16.1.32",
     "antd": "^3.2.3",
     "autosize": "^4.0.0",
@@ -17,14 +18,17 @@
     "material-ui-icons": "^1.0.0-beta.17",
     "meteor-node-stubs": "^0.3.2",
     "query-string": "^5.0.1",
+    "rc-time-picker": "^3.3.1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
+    "react-datepicker": "^1.4.1",
     "react-dom": "^16.2.0",
     "react-flip-move": "^2.10.0",
     "react-floating-label-input": "^3.0.5",
     "react-modal": "^3.1.10",
     "react-router-dom": "^4.2.2",
     "react-tap-event-plugin": "^3.0.2",
+    "react-time-picker": "^2.3.2",
     "simpl-schema": "^1.2.0"
   },
   "engines": {

@@ -10,3 +10,16 @@
 .modal-selector{
     background: $verydark-grey;
 }
+
+.modal-inlineelements {
+    display: flex;
+    background-color: $verydark-grey;
+    justify-content: space-between;
+  }
+  
+//   .flex-container > div {
+//     background-color: #f1f1f1;
+//     margin: 0px;
+//     padding: 0px;
+//     font-size: 30px;
+//   }

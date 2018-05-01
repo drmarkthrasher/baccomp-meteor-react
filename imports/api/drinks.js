@@ -13,9 +13,23 @@ if(Meteor.isServer) {
 
 Meteor.methods({
 
-    'drinks.insert'() {
+    'drinks.insert'(type, description, volume, alcohol, day, month,year,
+        hour,minute) {
 
-       console.log('This method has been successfully called!');
+        if(!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        //this is here to show how to validate fields if needed.
+        new SimpleSchema({
+            type: {
+              type: String,
+              min: 1
+            }
+          }).validate({ type })
+
+        Drinks.insert({ userId: Meteor.userId(), visible: true, type, description,
+            volume, alcohol, day, month, year, hour,minute});
     }
 
 
