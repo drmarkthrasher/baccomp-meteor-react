@@ -3,6 +3,8 @@
     max-width: $site-max-width;
     background-color: $verydark-grey;
     padding: $space;
+    height: 100%;
+    
 }
 
 .primaryfont {
@@ -15,4 +17,8 @@
 
 .addspaceabove{
     margin: 30px 0px;
+}
+
+.addspaceabovex2{
+    margin: 60px 0px;
 }

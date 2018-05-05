@@ -49,8 +49,6 @@ class DriverDetails extends Component {
     componentWillMount() {
         console.log('Prior to mount');
         
-        
-
     }
     
        
@@ -107,6 +105,8 @@ class DriverDetails extends Component {
        Meteor.call('drivers.save', id, name, height, weight, raceTeam, raceTeamWebsite,
             suit, shoes, gloves, helmet, hans, personalNotes, function(error,result){
         })   
+
+        history.push('/driversmain');
     }
 
 

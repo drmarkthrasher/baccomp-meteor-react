@@ -16,6 +16,15 @@
     background-color: $verydark-grey;
     justify-content: space-between;
   }
+
+.modal-itembackground{
+    border-radius: 10px;
+    background-color: $item-grey;
+    color: $secondaryfontcolor;
+    padding: 20px;
+    margin: 20px;
+    font-weight: bold;
+}
   
 //   .flex-container > div {
 //     background-color: #f1f1f1;

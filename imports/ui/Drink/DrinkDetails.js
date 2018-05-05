@@ -1,88 +1,83 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
+import { Meteor } from 'meteor/meteor';
+import { URLSearchParams } from 'url';
+import PropTypes from 'prop-types';
+import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
-import moment from 'moment';
 
-import 'react-datepicker/dist/react-datepicker.css';
+import history from '../../routes/history';
 
-const divStyle={
-    margin: '50px'
-};
+const queryString = require('query-string');
 
-class AddDrink extends Component {
-    constructor(props){
+class DrinkDetails extends Component {
+    constructor(props) {
         super(props);
 
         var m = moment();
 
         this.state = {
-            isOpen: false,
             type: 'Beer',
             description: '',
-            volume: 0,
-            alcohol: 0,
+            volume: '',
+            alcohol: '',
             day: m.date(),
             month: m.month(),
             year: m.year(),
             hour: m.hour(),
             minute: m.minute(),
             date: moment(),
-            time: moment(),
-            error: ''
+            time: moment()
         }
-    }
 
+       //this gets the item id from the search string
+        const parsed = queryString.parse(this.props.location.search);
+        id = parsed.id;
 
-
-    componentDidMount() {
-    //     var d = new Date();
-    //  console.log(d.getHours());
-    //  console.log(d.getMinutes());
-    //  console.log(d.getSeconds());
-
-    //how to compare datetimes in moments
-    var m=moment();
-        m.set({date:1,hour:14})
-    var dt = moment();
-    var dt2= m;
-
-        console.log(moment.duration(dt-dt2));
-
+        
     }
 
     componentWillMount() {
-        Modal.setAppElement('body');  //this added to make some warning go away??
+
+        
+
+        
     }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        
-        var type=this.state.type;
-        var description=this.state.description;
-        var volume=this.state.volume;
-        var alcohol=this.state.alcohol;
-        var day=this.state.day;
-        var month=this.state.month;
-        var year=this.state.year;
-        var hour=this.state.hour;
-        var minute=this.state.minute;
-        
-
     
-        Meteor.call('drinks.insert', type, description, volume, alcohol, 
-        day, month, year, hour, minute,(err, res) => {
-            if(!err) {
+       
+    componentDidMount() {
 
-                this.handleModalClose();
-            } else {
-                this.setState({ error: err.reason });
-            }
-        });
+        const self=this;
 
+        Meteor.call('drinks.retreive', id, function(error,result){
 
+            
+            document.getElementById('type').value=result.type;
+    
+            Session.set("day", result.day);
+            Session.set("month",result.month);
+            Session.set("year", result.year);
+            Session.set("hour", result.hour);
+            Session.set("minute", result.minute);
+
+            var m=moment();
+            m.set({date:Session.get('day'),month:Session.get('month'),year:Session.get('year')});
+            m.set({hour:Session.get('hour'),minute:Session.get('minute')});
+            
+            self.setState({
+                type: result.type,
+                description: result.description,
+                volume: result.volume,
+                alcohol: result.alcohol,
+                date: m,
+                time: m
+            })
+
+        });  
+            
+        
+        
     }
 
     handleChange() {
@@ -94,25 +89,9 @@ class AddDrink extends Component {
             volume: document.getElementById('volume').value,
             alcohol: document.getElementById('alcohol').value
         })
-
-
-    
     }
 
-    handleModalClose() {
-        this.setState({ 
-            isOpen: false,
-            error: ''}) 
-     }
-
-     handleNewDrink() {
-        this.setState({
-            isOpen: true,
-            type: 'Beer'
-        })
-     }
-
-     onDateChange(date) {
+    onDateChange(date) {
         
         var m=moment();
         m.set({date:date.date(),month:date.month(),year:date.year()})
@@ -127,6 +106,10 @@ class AddDrink extends Component {
             year: date.year()
         })
 
+        Session.set("day", date.date());
+        Session.set("month",date.month());
+        Session.set("year", date.year());
+
         
      }
 
@@ -139,26 +122,43 @@ class AddDrink extends Component {
             hour: time.hour(),
             minute: time.minute()
          })
+
+         Session.set("hour", time.hour());
+         Session.set("minute",time.minute());
      }
-    
+
+     onSubmit(e) {
+        e.preventDefault();
+
+        console.log("Submit is being called");
+
+        const type=document.getElementById('type').value;
+        const description=document.getElementById('description').value;
+        const volume=document.getElementById('volume').value;
+        const alcohol=document.getElementById('alcohol').value;
+        const day = Session.get("day");
+        const month = Session.get("month");
+        const year = Session.get("year");
+        const hour = Session.get("hour");
+        const minute = Session.get("minute");
+        // const day = this.state.day;
+        // const month= this.state.month;
+        // const year = this.state.year;
+        // const hour = this.state.hour;
+        // const minute = this.state.minute;
+
+       Meteor.call('drinks.save', id, type, description, volume, alcohol, day,
+            month, year, hour, minute, function(error,result){
+        })   
+
+        history.push('/drinksmain');
+    }
+
+
+
     render() {
         return (
-            <div className="page-content">
-            
-                <button className="button" onClick={this.handleNewDrink.bind(this)}>+ Add Drink</button>
-                <Modal 
-                    isOpen={this.state.isOpen} 
-                    contentLabel="Add Drink"
-                    // onAfterOpen={() => this.id.description.focus()}
-                    onRequestClose={this.handleModalClose.bind(this)}
-                    className="form-section"
-                    overlayClassName="boxed-view boxed-view--modal"
-                    >
-                    <p className="primaryfont">Drink Type</p>
-                    {this.state.error ? <p>{this.state.error}</p> : undefined}
-
-                    <form onSubmit={this.onSubmit.bind(this)} >
-                    <div className="modal-input">
+            <div className="modal-input">
                     
                     
                         <select id="type" 
@@ -216,15 +216,14 @@ class AddDrink extends Component {
                             </div>
                         
 
-                        <button className="button">Add Drink</button>
-                        <button type="button" className="button button--secondary" onClick={this.handleModalClose.bind(this)}>Cancel</button>
+                        <button className="button"
+                        onClick={this.onSubmit}>Save</button>
+                    
                     </div>
                     
-                        </form>
-                </Modal>     
-            </div>
+
         );
     }
 }
 
-export default AddDrink;
+export default DrinkDetails;

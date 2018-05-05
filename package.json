@@ -32,6 +32,6 @@
     "simpl-schema": "^1.2.0"
   },
   "engines": {
-    "node": "8.8.1"
+    "node": "8.11.1"
   }
 }
