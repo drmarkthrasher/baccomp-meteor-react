@@ -87,6 +87,11 @@ const styles = {
         this.closeDrawer();
     }
 
+    gotoProfile = (event) => {
+        history.push('/profile')
+        this.closeDrawer();
+    }
+
 
     render() {
         const { classes } =this.props;  //used if using styles from above
@@ -112,7 +117,8 @@ const styles = {
                         >
                         <MenuItem value="Home" onClick={this.gotoDashboard.bind(this)}>Home</MenuItem>
                         <Divider/>
-                        {/*<MenuItem value="Driver" onClick={ this.gotoDriversMain.bind(this)}>Driver</MenuItem>*/}
+                        <MenuItem value="Profile" onClick={ this.gotoProfile.bind(this)}>Profile</MenuItem>
+                        <MenuItem value="Driver" onClick={ this.gotoDriversMain.bind(this)}>Driver</MenuItem>
                         <MenuItem value="Drinks" onClick={this.gotoDrinksMain.bind(this)}>Drinks</MenuItem>
                         {/*<MenuItem value="Track" onClick={this.gotoTracksMain.bind(this)} >Track</MenuItem>*/}
                         {/*<MenuItem value="Car" onClick={this.gotoCarsMain.bind(this)}>Car</MenuItem>*/}

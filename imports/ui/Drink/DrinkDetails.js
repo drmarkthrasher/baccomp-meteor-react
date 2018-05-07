@@ -158,31 +158,38 @@ class DrinkDetails extends Component {
 
     render() {
         return (
-            <div className="modal-input">
+            <div className="page-content">
                     
-                    
-                        <select id="type" 
-                                style={{marginBottom: 40}} 
-                                className="form-input"
-                                onChange={this.handleChange.bind(this)}>
-                            <option value="Beer">Beer</option>
-                            <option value="Light Beer">Light Beer</option>
-                            <option value="Wine">Wine</option>
-                            <option value="Whiskey Shot">Whiskey Shot</option>
-                            <option value="Cocktail">Cocktail</option>
-                        </select>
 
-                        <div>
-                            <label className="primaryfont">Description</label>
-                            <input className='autoExpand form-input' rows='1' data-min-rows='1'
-                                id="description" 
-                                placeholder=''
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.description}>
-                            </input>
-                        </div>
+                <h2 className="form-section_title">Drink</h2>
+                <div className="form-section">
+            
+                    <label>Type</label>         
+                    <select id="type" 
+                            style={{marginBottom: 40}} 
+                            className="form-input"
+                            onChange={this.handleChange.bind(this)}>
+                        <option value="Beer">Beer</option>
+                        <option value="Light Beer">Light Beer</option>
+                        <option value="Wine">Wine</option>
+                        <option value="Whiskey Shot">Whiskey Shot</option>
+                        <option value="Cocktail">Cocktail</option>
+                    </select>
+                                
+                    <label>Description</label>
+                    <input className='autoExpand form-input' rows='1' data-min-rows='1'
+                        id="description" 
+                        placeholder=''
+                        onChange={this.handleChange.bind(this)}
+                        value={this.state.description}>
+                    </input>
+
+                </div>
+
+                <h2 className="form-section_title">Alcohol</h2>
+                <div className="form-section">
                         
-                            <label className="primaryfont">Volume (oz)</label>
+                            <label>Volume (oz)</label>
                             <input className='autoExpand form-input' rows='2' data-min-rows='2'
                                 id="volume" 
                                 placeholder=''
@@ -190,36 +197,43 @@ class DrinkDetails extends Component {
                                 value={this.state.volume}>
                             </input>
                         
-                            <label className="primaryfont">Alcohol Content (%)</label>
+                            <label>Alcohol Content (%)</label>
                             <input className='autoExpand form-input' rows='2' data-min-rows='2'
                                 id="alcohol" 
                                 placeholder=''
                                 onChange={this.handleChange.bind(this)}
                                 value={this.state.alcohol}>
                             </input>
-
+                </div>
                             <h1 className="addspaceabove"></h1>
                         
+
+                <h2 className="form-section_title">Consumption</h2>
+                <div className="form-section">            
                             <div className="form-inlineelements" >
-                                <label className="primaryfont">Date</label>          
+                                <label>Date</label>          
                                 <DatePicker onChange={this.onDateChange.bind(this)} 
                                     selected={this.state.date}></DatePicker>                                               
                             </div>
 
                             <div className="form-inlineelements">
-                                <label className="primaryfont">Time</label>
+                                <label>Time</label>
                                 <TimePicker
                                     value={this.state.time}
                                     onChange={this.onTimeChange.bind(this)}
                                     showSecond={false}
                                     use12Hours/>  
                             </div>
+                </div>
+                        
                         
 
                         <button className="button"
                         onClick={this.onSubmit}>Save</button>
                     
-                    </div>
+            </div>
+
+                    
                     
 
         );

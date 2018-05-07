@@ -152,15 +152,18 @@ class AddDrink extends Component {
                     // onAfterOpen={() => this.id.description.focus()}
                     onRequestClose={this.handleModalClose.bind(this)}
                     className="form-section"
+                    className="modal-scroll"
                     overlayClassName="boxed-view boxed-view--modal"
                     >
-                    <p className="primaryfont">Drink Type</p>
                     {this.state.error ? <p>{this.state.error}</p> : undefined}
 
                     <form onSubmit={this.onSubmit.bind(this)} >
-                    <div className="modal-input">
                     
                     
+                    <h2 className="form-section_title">Drink</h2>
+                    <div className="form-section">
+
+                        <label>Type</label> 
                         <select id="type" 
                                 style={{marginBottom: 40}} 
                                 className="form-input"
@@ -172,53 +175,63 @@ class AddDrink extends Component {
                             <option value="Cocktail">Cocktail</option>
                         </select>
 
-                        <div>
-                            <label className="primaryfont">Description</label>
-                            <input className='autoExpand form-input' rows='1' data-min-rows='1'
-                                id="description" 
-                                placeholder=''
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.description}>
-                            </input>
-                        </div>
                         
-                            <label className="primaryfont">Volume (oz)</label>
-                            <input className='autoExpand form-input' rows='2' data-min-rows='2'
-                                id="volume" 
-                                placeholder=''
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.volume}>
-                            </input>
+                        <label>Description</label>
+                        <input className='autoExpand form-input' rows='1' data-min-rows='1'
+                            id="description" 
+                            placeholder=''
+                            onChange={this.handleChange.bind(this)}
+                            value={this.state.description}>
+                        </input>
+
+                    </div>
+
+                    <h2 className="form-section_title">Alcohol</h2>
+                    <div className="form-section">
                         
-                            <label className="primaryfont">Alcohol Content (%)</label>
-                            <input className='autoExpand form-input' rows='2' data-min-rows='2'
-                                id="alcohol" 
-                                placeholder=''
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.alcohol}>
-                            </input>
+                        <label>Volume (oz)</label>
+                        <input className='autoExpand form-input' rows='2' data-min-rows='2'
+                            id="volume" 
+                            placeholder=''
+                            onChange={this.handleChange.bind(this)}
+                            value={this.state.volume}>
+                        </input>
+                    
+                        <label>Alcohol Content (%)</label>
+                        <input className='autoExpand form-input' rows='2' data-min-rows='2'
+                            id="alcohol" 
+                            placeholder=''
+                            onChange={this.handleChange.bind(this)}
+                            value={this.state.alcohol}>
+                        </input>
+
+                    </div>
 
                             <h1 className="addspaceabove"></h1>
                         
+                    <h2 className="form-section_title">Consumption</h2>
+                    <div className="form-section"> 
+
                             <div className="form-inlineelements" >
-                                <label className="primaryfont">Date</label>          
+                                <label>Date</label>          
                                 <DatePicker onChange={this.onDateChange.bind(this)} 
                                     selected={this.state.date}></DatePicker>                                               
                             </div>
 
                             <div className="form-inlineelements">
-                                <label className="primaryfont">Time</label>
+                                <label>Time</label>
                                 <TimePicker
                                     value={this.state.time}
                                     onChange={this.onTimeChange.bind(this)}
                                     showSecond={false}
                                     use12Hours/>  
                             </div>
-                        
+                            
+                    </div>    
 
                         <button className="button">Add Drink</button>
                         <button type="button" className="button button--secondary" onClick={this.handleModalClose.bind(this)}>Cancel</button>
-                    </div>
+                    
                     
                         </form>
                 </Modal>     
