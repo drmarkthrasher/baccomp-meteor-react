@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { URLSearchParams } from 'url';
 import PropTypes from 'prop-types';
 import { Input, Form } from 'antd';
-import 'antd/dist/antd.css';  //required for formatting to work
+// import 'antd/dist/antd.css';  //required for formatting to work
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';

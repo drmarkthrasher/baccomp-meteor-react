@@ -163,9 +163,9 @@ class DrinkDetails extends Component {
                     
                         <select id="type" 
                                 style={{marginBottom: 40}} 
-                                className="modal-selector"
+                                className="form-input"
                                 onChange={this.handleChange.bind(this)}>
-                            <option value="Beer" className="modal-selector">Beer</option>
+                            <option value="Beer">Beer</option>
                             <option value="Light Beer">Light Beer</option>
                             <option value="Wine">Wine</option>
                             <option value="Whiskey Shot">Whiskey Shot</option>
@@ -200,13 +200,13 @@ class DrinkDetails extends Component {
 
                             <h1 className="addspaceabove"></h1>
                         
-                            <div className="modal-inlineelements" >
+                            <div className="form-inlineelements" >
                                 <label className="primaryfont">Date</label>          
                                 <DatePicker onChange={this.onDateChange.bind(this)} 
                                     selected={this.state.date}></DatePicker>                                               
                             </div>
 
-                            <div className="modal-inlineelements">
+                            <div className="form-inlineelements">
                                 <label className="primaryfont">Time</label>
                                 <TimePicker
                                     value={this.state.time}

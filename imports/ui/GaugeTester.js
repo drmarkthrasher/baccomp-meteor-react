@@ -4,6 +4,7 @@ import { enableRipple } from '@syncfusion/ej2-base';
 import { CircularGaugeComponent, AxesDirective, AxisDirective, PointersDirective, PointerDirective, RangeDirective, RangesDirective,
     Inject, Annotations, AnnotationsDirective, AnnotationDirective } from '@syncfusion/ej2-react-circulargauge';
 
+import MainNavigationBar from './MainNavigationBar';
 
 enableRipple(false);
 
@@ -34,16 +35,13 @@ class GaugeTester extends Component {
 
     }
 
-    onDoSomething(e){
-        console.log("Code can be added here...");
 
-    }
 
     render() {
         return (
             <div className='screenbackground'>
-                <h1>Put some text in here!</h1>
-                <ButtonComponent cssClass='e-success' onClick={this.onDoSomething.bind(this)}>Click Me </ButtonComponent>
+            <MainNavigationBar title="BAC Gauge"/>
+            <h2 className="addspaceabovex2"></h2>
                 <button style={{margin: 20}} className="button"
                 onClick={this.onStartBACCalc.bind(this)}>Start/Stop BAC</button>
                 <CircularGaugeComponent >

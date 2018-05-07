@@ -8,7 +8,7 @@ import DrinksListFilters from './DrinksListFilters';
 class DrinksMain extends Component {
     render() {
         return (
-            <div>
+            <div className="page-content">
                 <MainNavigationBar title="Drink Page"/>
                 <div className="page-content">
 

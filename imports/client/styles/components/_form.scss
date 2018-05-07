@@ -41,8 +41,15 @@
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-weight: 100;
+    font-weight: 200;
+    color: $secondaryfontcolor;
 }
+
+.form-inlineelements {
+    display: flex;
+    background-color: $verydark-grey;
+    justify-content: space-between;
+  }
 
 .screenbackground {
     background: $verydark-grey;
