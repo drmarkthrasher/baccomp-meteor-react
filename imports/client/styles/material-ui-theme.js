@@ -6,6 +6,7 @@ import green from 'material-ui/colors/green';
 import blue from 'material-ui/colors/blue';
 import indigo from 'material-ui/colors/indigo';
 import teal from 'material-ui/colors/teal';
+import grey from 'material-ui/colors/grey';
 
 export default theme = createMuiTheme({
     container: {
@@ -14,13 +15,13 @@ export default theme = createMuiTheme({
         margin: 'normal'
     },
     palette: {
-        primary: indigo,
+        primary: grey,
         secondary: teal,
         type: 'light'
     },
     typography: {
         htmlFontSize: 10,
-        fontSize: 20,
+        fontSize: 15,
         button: {
             
             
