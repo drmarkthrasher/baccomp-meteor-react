@@ -82,8 +82,8 @@ const styles = {
         this.closeDrawer();
     }
 
-    gotoGaugeTester = (event) => {
-        history.push('/gaugetester')
+    gotoBACGauge = (event) => {
+        history.push('/bacgauge')
         this.closeDrawer();
     }
 
@@ -112,7 +112,7 @@ const styles = {
                     </AppBar>
 
                     <Drawer 
-                        color="contrast"
+                        
                         open={this.state.open}
                         onClick={(this.closeDrawer.bind(this))}
                         >
@@ -123,7 +123,7 @@ const styles = {
                         <MenuItem value="Drinks" onClick={this.gotoDrinksMain.bind(this)}>Drinks</MenuItem>
                         {/*<MenuItem value="Track" onClick={this.gotoTracksMain.bind(this)} >Track</MenuItem>*/}
                         {/*<MenuItem value="Car" onClick={this.gotoCarsMain.bind(this)}>Car</MenuItem>*/}
-                        <MenuItem value="GaugeTester" onClick={this.gotoGaugeTester.bind(this)}>Gauge Tester</MenuItem>
+                        <MenuItem value="BACGauge" onClick={this.gotoBACGauge.bind(this)}>BAC Gauge</MenuItem>
                     </Drawer>
                 </div>
             </MuiThemeProvider>

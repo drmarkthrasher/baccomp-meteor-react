@@ -117,6 +117,12 @@ Meteor.methods({
                  minute: minute
              }
          })
-        }
+    },
+    'drinks.find'(){
+        const drinks = Drinks.find({userId: this.userId }).fetch();
+        // console.log("Profile is "+profiles[0].fullname);
+        return drinks; 
+        
+    }
 
 })

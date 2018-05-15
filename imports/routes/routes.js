@@ -12,7 +12,7 @@ import DriversMain from '../ui/Driver/DriversMain';
 import DriverDetails from '../ui/Driver/DriverDetails';
 import DrinksMain from '../ui/Drink/DrinksMain';
 import DrinkDetails from '../ui/Drink/DrinkDetails';
-import GaugeTester from '../ui/GaugeTester';
+import BACGauge from '../ui/BACGauge';
 import Profile from '../ui/Profile';
 
 const unauthenticatedPages = ['/', '/signup'];
@@ -41,7 +41,7 @@ export const routes = (
       <Route path="/driverdetails" component={DriverDetails}/>
       <Route path="/drinksmain" component={DrinksMain}/>
       <Route path="/drinkdetails" component={DrinkDetails}/>
-      <Route path="/gaugetester" component={GaugeTester}/>
+      <Route path="/bacgauge" component={BACGauge}/>
       <Route path="/profile" component={Profile}/>
       <Route component={NotFound}/>
     </Switch>

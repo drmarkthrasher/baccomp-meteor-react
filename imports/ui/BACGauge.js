@@ -3,6 +3,7 @@ import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { CircularGaugeComponent, AxesDirective, AxisDirective, PointersDirective, PointerDirective, RangeDirective, RangesDirective,
     Inject, Annotations, AnnotationsDirective, AnnotationDirective } from '@syncfusion/ej2-react-circulargauge';
+import moment from 'moment';
 
 import MainNavigationBar from './MainNavigationBar';
 
@@ -14,23 +15,112 @@ class GaugeTester extends Component {
         super(props);
 
         this.state = {
-            gaugevalue: .03         
+            drinks: [],
+            gaugevalue: .0,
+            gender: "Male",
+            age: 21,
+            weight: 200     
         }
 
         myvar='';
         flag=false;
     }
 
-    onStartBACCalc(e) {
-        
-        this.setState({ 
-            gaugevalue: this.state.gaugevalue+.01
+    componentDidMount() {
+        Meteor.call('drinks.find',(err,res) => {
+            const drinks=res;
+            this.setState({ drinks });
+            
+
+            //use this to loop through and get drink info
+            drinks.forEach( function(drink) {
+                console.log(drink.description);
+            })
         })
+
+        Meteor.call('profiles.find',(err,res) => {
+            this.setState({
+                gender: res.gender,
+                age: res.age,
+                weight: res.weight
+            })
+        })
+
+        this.onStartBACCalc();
+
+
+    }
+
+    componentWillUnmount() {
+        clearInterval(myvar);
+    }
+    
+    
+
+    onStartBACCalc(e) {
+
+        const self=this;
         
+        var inittime=moment();
+
         flag ? (clearInterval(myvar), flag=false) :  myvar = Meteor.setInterval(function () {
-        var date = new Date();
-        flag=true;
-        console.log("Function is running");
+            flag=true;
+
+            var currenttime=moment();
+            var startdrinking=0;
+            var totalalcoholconsumed=0;
+
+            //calculate alcohol consumed (grams)
+            // grams = oz * 29.6 ml/oz * alcohol/100 * 0.789 (spec gravity)
+ 
+
+            self.state.drinks.forEach( function(drink) {
+                var m=moment();
+                var day=drink.day;
+                var month=drink.month;
+                var year=drink.year;
+                var hour=drink.hour;
+                var minute=drink.minute;
+                m.set({date:day,month:month,year:year,hour:hour,minute:minute})
+                
+                //hours ago
+                var timelapsed=moment.duration(currenttime-m)/1000/60/60;
+                var thisdrinkalcohol=drink.volume*29.6*drink.alcohol/100*0.789
+                
+
+                //eliminate drinks that were drank more than 8 hours ago...
+                if(timelapsed>8){
+                    timelapsed=0;
+                    thisdrinkalcohol=0;
+                }
+                    
+
+                if(timelapsed>startdrinking)
+                    startdrinking=timelapsed;
+
+                totalalcoholconsumed+=thisdrinkalcohol;
+
+                //duration in minutes...
+                console.log("Time since in minutes "+moment.duration(currenttime-m)/1000/60);
+
+            }) 
+
+            console.log("Time since started drinking in hours "+startdrinking);
+            console.log("Total alchohol consumed is "+totalalcoholconsumed+" grams");
+
+            //bac=alcohol(grams)/(body weight(grams)*r)*100
+            //r=0.55 females and 0.68 for males
+
+            self.state.gender=="Male" ? r=0.68 : r=0.55;
+            
+            var bodyweight=self.state.weight/2.205*1000;  //convert weight from lbs to grams
+            bac=totalalcoholconsumed/bodyweight/r*100-0.015*startdrinking;
+            console.log("Bac is " +bac);
+
+            self.setState({ 
+                gaugevalue: bac
+            })
+
         }, 1000)
 
     }
@@ -42,8 +132,7 @@ class GaugeTester extends Component {
             <div className='screenbackground'>
             <MainNavigationBar title="BAC Gauge"/>
             <h2 className="addspaceabovex2"></h2>
-                <button style={{margin: 20}} className="button"
-                onClick={this.onStartBACCalc.bind(this)}>Start/Stop BAC</button>
+                
                 <CircularGaugeComponent >
                 <Inject services={[ Annotations ]}/>
                     <AxesDirective>
