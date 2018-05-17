@@ -37,18 +37,7 @@ class AddDrink extends Component {
 
 
     componentDidMount() {
-    //     var d = new Date();
-    //  console.log(d.getHours());
-    //  console.log(d.getMinutes());
-    //  console.log(d.getSeconds());
-
-    //how to compare datetimes in moments
-    var m=moment();
-        m.set({date:1,hour:14})
-    var dt = moment();
-    var dt2= m;
-
-        console.log(moment.duration(dt-dt2));
+    
 
     }
 
@@ -85,11 +74,40 @@ class AddDrink extends Component {
 
     }
 
+    handleTypeChange() {
+        var vol, alc;
+        var type=document.getElementById('type').value;
+        if(type=="Beer"){
+            vol=12;
+            alc=5;
+        }else if (type=="Light Beer") {
+            vol=12;
+            alc=4;
+        }else if (type==="Wine") {
+            vol=5;
+            alc=12;
+        }else if (type=="Whiskey Shot") {
+            vol=1.5;
+            alc=40;
+        }else if (type=="Cocktail") {
+            vol=1.5;
+            alc=40;
+        }
+
+        this.setState({
+            type: document.getElementById('type').value,
+            volume: vol,
+            alcohol: alc
+        })
+    }
+
     handleChange() {
+
+        
 
         //this is for change in the input fields
         this.setState({
-            type: document.getElementById('type').value,
+            
             description: document.getElementById('description').value,
             volume: document.getElementById('volume').value,
             alcohol: document.getElementById('alcohol').value
@@ -108,7 +126,9 @@ class AddDrink extends Component {
      handleNewDrink() {
         this.setState({
             isOpen: true,
-            type: 'Beer'
+            type: 'Beer',
+            volume: 12,
+            alcohol: 5
         })
      }
 
@@ -116,10 +136,7 @@ class AddDrink extends Component {
         
         var m=moment();
         m.set({date:date.date(),month:date.month(),year:date.year()})
-        // var d= new Date();
-        // d.setDate(date.date());
-        // d.setMonth(date.date());
-        // d.setFullYear(date.date());
+        
         this.setState({
             date: m,
             day: date.date(),
@@ -167,7 +184,7 @@ class AddDrink extends Component {
                         <select id="type" 
                                 style={{marginBottom: 40}} 
                                 className="form-input"
-                                onChange={this.handleChange.bind(this)}>
+                                onChange={this.handleTypeChange.bind(this)}>
                             <option value="Beer">Beer</option>
                             <option value="Light Beer">Light Beer</option>
                             <option value="Wine">Wine</option>

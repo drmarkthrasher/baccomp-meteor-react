@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import FlipMove from 'react-flip-move';
+import moment from 'moment';
 
 import { Drinks } from '../../api/drinks';
 import DrinksListItem from './DrinksListItem';
@@ -38,7 +39,39 @@ class DrinksList extends Component {
             )
         }
         return this.state.drinks.map((drink) => {
-            return <DrinksListItem key={drink._id} {...drink}/>
+
+            var currenttime=moment();
+
+            var m=moment();
+                var day=drink.day;
+                var month=drink.month;
+                var year=drink.year;
+                var hour=drink.hour;
+                var minute=drink.minute;
+                m.set({date:day,month:month,year:year,hour:hour,minute:minute})               
+                //hours ago
+                var timelapsed=moment.duration(currenttime-m)/1000/60/60;
+
+            if(Session.get('drinkDateFilter')=="All"){
+                return <DrinksListItem key={drink._id} {...drink}/>
+            }else if(Session.get('drinkDateFilter')=="Last Week"){
+                if(timelapsed<168){
+                    return <DrinksListItem key={drink._id} {...drink}/>
+                }
+            }else if(Session.get('drinkDateFilter')=="Last Day"){
+                if(timelapsed<24){
+                    return <DrinksListItem key={drink._id} {...drink}/>
+                }
+            }else if(Session.get('drinkDateFilter')=="Last 12 hours"){
+                if(timelapsed<12){
+                    return <DrinksListItem key={drink._id} {...drink}/>
+                }
+            }else if(Session.get('drinkDateFilter')=="Last 6 hours"){
+                if(timelapsed<6){
+                    return <DrinksListItem key={drink._id} {...drink}/>
+                }
+            }
+                
         })
     }
 

@@ -14,7 +14,13 @@ class DashBoard extends Component {
     this.state = {
      
     };
-  }    
+  }   
+  
+  
+  componentWillMount() {
+    // delete Session.keys['drinkDateFilter'];
+  }
+  
     
     render() {
         return (   
