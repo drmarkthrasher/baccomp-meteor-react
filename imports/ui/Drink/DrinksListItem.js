@@ -97,12 +97,18 @@ class DrinksListItem extends Component {
     render() {   
         return (
             <div className="item" className="modal-itembackground">
-              <h2 className="primaryfont">{this.props.type}</h2>
+
+              <div className="form-inlineelements2">
+                <h2 className="primaryfont">{this.props.type}</h2>
+                <p>{this.state.hr}:{this.state.min} {this.state.ampm}</p>
+              </div>
+              
 
               <div className="form-inlineelements2">
                 <p className="item__message" className="secondaryfont">Description: {this.props.description}</p>
-                <p>{this.state.hr}:{this.state.min} {this.state.ampm}, {this.state.mon} {this.state.date}, {this.state.year}</p>
+                <p>{this.state.mon} {this.state.date}, {this.state.year}</p>
               </div>
+             
               
               <button className="button button--pill" onClick={this.onGoToDetails.bind(this)}>
                 Details
