@@ -103,8 +103,6 @@ class AddDrink extends Component {
 
     handleChange() {
 
-        
-
         //this is for change in the input fields
         this.setState({
             

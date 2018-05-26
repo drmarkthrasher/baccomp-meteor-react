@@ -142,7 +142,7 @@ class GaugeTester extends Component {
                             color: 'black'
                             }} 
                             minimum={0}
-                            maximum={.3}
+                            maximum={.24}
                             background = 'rgba(0,128,128,0.3)'
                             majorTicks={{
                                 interval: .02,
@@ -175,11 +175,11 @@ class GaugeTester extends Component {
                                     color='green'
                                     radius='60%'>
                                 </RangeDirective>
-                                <RangeDirective start={0.06} end={0.1}
+                                <RangeDirective start={0.06} end={0.08}
                                     color='yellow'
                                     radius='60%'>
                                 </RangeDirective>
-                                <RangeDirective start={0.1} end={0.3}
+                                <RangeDirective start={0.08} end={0.24}
                                     color='red'
                                     radius='60%'>
                                 </RangeDirective>

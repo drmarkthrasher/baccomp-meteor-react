@@ -19,6 +19,25 @@ class DashBoard extends Component {
   
   componentWillMount() {
     // delete Session.keys['drinkDateFilter'];
+
+    // Your parse code, but not seperated in a function
+    // var csvFilePath = './uploadCSV.csv';
+    // var csvFilePath= "./uploadCSV.csv";
+
+    // console.log(csvFilePath);
+
+    // Papa.parse(csvFilePath, {
+    //   header: true,
+    //   download: true,
+    //   skipEmptyLines: true,
+    //   // Here this is also available. So we can call our custom class method
+    //   complete: function(results) {
+    //     console.log(results);
+    // }
+      
+    // });
+
+
   }
   
     
