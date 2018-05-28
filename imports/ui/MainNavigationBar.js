@@ -92,6 +92,14 @@ const styles = {
         this.closeDrawer();
     }
 
+    gotoCocktailsMain = (event) => {
+        history.push('/cocktailsmain')
+        console.log("This is getting called");
+        this.closeDrawer();
+    }
+
+    
+
 
     render() {
         const { classes } =this.props;  //used if using styles from above
@@ -124,7 +132,9 @@ const styles = {
                         {/*<MenuItem value="Track" onClick={this.gotoTracksMain.bind(this)} >Track</MenuItem>*/}
                         {/*<MenuItem value="Car" onClick={this.gotoCarsMain.bind(this)}>Car</MenuItem>*/}
                         <MenuItem value="BACGauge" onClick={this.gotoBACGauge.bind(this)}>BAC Gauge</MenuItem>
-                    </Drawer>
+                        <MenuItem value="Cocktails" onClick={this.gotoCocktailsMain.bind(this)}>Cocktails</MenuItem>
+                        
+                        </Drawer>
                 </div>
             </MuiThemeProvider>
         );
