@@ -94,7 +94,6 @@ const styles = {
 
     gotoCocktailsMain = (event) => {
         history.push('/cocktailsmain')
-        console.log("This is getting called");
         this.closeDrawer();
     }
 

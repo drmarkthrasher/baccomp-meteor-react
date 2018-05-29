@@ -11,7 +11,8 @@ class CocktailsList extends Component {
         super(props);
 
         this.state = {
-            cocktails: []
+            cocktails: [],
+            name: ""
         }
     }
 
@@ -21,6 +22,7 @@ class CocktailsList extends Component {
             const cocktails = Cocktails.find({}).fetch();
             this.setState({ cocktails });
           })
+
     }
 
     componentWillUnmount() {
@@ -36,16 +38,51 @@ class CocktailsList extends Component {
             )
         }
         return this.state.cocktails.map((cocktail) => {
-
-            return <CocktailsListItem key={cocktail._id} {...cocktail}/>
-                
+            return <CocktailsListItem key={cocktail._id} {...cocktail}/>               
         })
+    }
+
+
+    handleChange() {
+
+        this.setState({
+            name: document.getElementById('name').value
+        })
+
+        Meteor.call('cocktails.retreive', document.getElementById('name').value,(err, res) => {
+            if(!err) {
+                this.setState({cocktails:res})
+            } else {
+                
+            }
+        });
+
     }
 
 
     render() {
         return (
             <div>
+
+            <div className="page-content">
+
+                <div className="form-section">
+                        
+                    <label>Cocktail Search...</label>
+                    <input className='autoExpand form-input' rows='1' data-min-rows='1'
+                    id="name" 
+                    placeholder=''
+                    onChange={this.handleChange.bind(this)}
+                    value={this.state.name}>
+                    </input>
+            
+                </div>
+            </div>
+
+                
+
+
+
                 <FlipMove maintainContainerHeight={true}>
                 {this.renderCocktailsListItems()}
                 </FlipMove>

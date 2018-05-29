@@ -27,8 +27,8 @@ class CocktailsListItem extends Component {
             <div>
 
                 <div className="item" className="modal-itembackground">
-                    <p>{this.props.d_name}</p> 
-                    <p>{this.props.d_cat}</p>  
+                    <h2 className="primaryfont">{this.props.d_name}</h2>
+                    <p className="secondaryfont">{this.props.d_cat}</p>  
                     
                     <button className="button button--pill" onClick={this.onGoToDetails.bind(this)}>
                         Details
