@@ -9,11 +9,11 @@ import DrinksDateFilter from './DrinksDateFilter';
 class DrinksMain extends Component {
     render() {
         return (
-            <div className="page-content">
-                <MainNavigationBar title="Drink Page"/>
+            <div >
+                
                 <div className="page-content">
 
-                    <h2 className="addspaceabovex2"></h2>
+                    
                     <AddDrink/>
                     <DrinksListFilters/>
                     <DrinksDateFilter/>

@@ -14,7 +14,7 @@ if(Meteor.isServer) {
 
 Meteor.methods({
 
-    'cocktails.retreive'(name) {
+    'cocktails.parse'(name) {
         if(!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
@@ -30,6 +30,23 @@ Meteor.methods({
 
         const cocktails = Cocktails.find({ d_name: new RegExp(str, 'i') }).fetch();
         return cocktails;  
+        
+    },
+    'cocktails.retreive'(name) {
+
+        if(!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        new SimpleSchema({
+            name: {
+                type: String,
+                min: 1
+            }
+        }).validate({ name })
+
+        const cocktails = Cocktails.find({ d_name: name }).fetch();
+        return cocktails[0];  //note:  there should be only one item
         
     }
 

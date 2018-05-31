@@ -5,6 +5,7 @@ import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
 import moment from 'moment';
 
+import history from '../../routes/history';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const divStyle={
@@ -155,12 +156,22 @@ class AddDrink extends Component {
             minute: time.minute()
          })
      }
+
+     handleBackButton() {
+        history.push('/dashboard');
+    }
     
     render() {
         return (
             <div className="page-content">
+
+                <button className="btn info" onClick={this.handleBackButton.bind(this)}>Back</button>
+
+                <button className="btn info" onClick={this.handleNewDrink.bind(this)}>Add Drink</button>
             
-                <button className="button" onClick={this.handleNewDrink.bind(this)}>+ Add Drink</button>
+               
+
+
                 <Modal 
                     isOpen={this.state.isOpen} 
                     contentLabel="Add Drink"
@@ -244,8 +255,8 @@ class AddDrink extends Component {
                             
                     </div>    
 
-                        <button className="button">Add Drink</button>
-                        <button type="button" className="button button--secondary" onClick={this.handleModalClose.bind(this)}>Cancel</button>
+                        <button className="btn info">Add Drink</button>
+                        <button type="button" className="btn info" onClick={this.handleModalClose.bind(this)}>Cancel</button>
                     
                     
                         </form>

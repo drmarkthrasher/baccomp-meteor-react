@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import FlipMove from 'react-flip-move';
 
+import history from '../../routes/history';
 import { Cocktails } from '../../api/cocktails';
 import CocktailsListItem from './CocktailsListItem';
 
@@ -49,7 +50,7 @@ class CocktailsList extends Component {
             name: document.getElementById('name').value
         })
 
-        Meteor.call('cocktails.retreive', document.getElementById('name').value,(err, res) => {
+        Meteor.call('cocktails.parse', document.getElementById('name').value,(err, res) => {
             if(!err) {
                 this.setState({cocktails:res})
             } else {
@@ -59,33 +60,42 @@ class CocktailsList extends Component {
 
     }
 
+    handleBackButton() {
+        history.push('/dashboard');
+    }
+
 
     render() {
         return (
             <div>
 
-            <div className="page-content">
+                <div className="page-content">
 
-                <div className="form-section">
-                        
-                    <label>Cocktail Search...</label>
-                    <input className='autoExpand form-input' rows='1' data-min-rows='1'
-                    id="name" 
-                    placeholder=''
-                    onChange={this.handleChange.bind(this)}
-                    value={this.state.name}>
-                    </input>
-            
+                    <button className="btn info" onClick={this.handleBackButton.bind(this)}>Back</button>
+
+                    <div className="form-section">
+                            
+                        <label>Cocktail Search...</label>
+                        <input className='autoExpand form-input' rows='1' data-min-rows='1'
+                        id="name" 
+                        placeholder=''
+                        onChange={this.handleChange.bind(this)}
+                        value={this.state.name}>
+                        </input>
+                
+                    </div>
+
+
+                   
                 </div>
-            </div>
 
                 
-
-
-
                 <FlipMove maintainContainerHeight={true}>
                 {this.renderCocktailsListItems()}
                 </FlipMove>
+
+
+                
             </div>
         );
     }

@@ -5,6 +5,7 @@ import { CircularGaugeComponent, AxesDirective, AxisDirective, PointersDirective
     Inject, Annotations, AnnotationsDirective, AnnotationDirective } from '@syncfusion/ej2-react-circulargauge';
 import moment from 'moment';
 
+import history from '../routes/history';
 import MainNavigationBar from './MainNavigationBar';
 
 enableRipple(false);
@@ -126,11 +127,19 @@ class GaugeTester extends Component {
     }
 
 
+    handleBackButton() {
+        history.push('/dashboard');
+    }
 
     render() {
         return (
+
+            <div className="page-content">
+
+            <button className="btn info" onClick={this.handleBackButton.bind(this)}>Back</button>
+
             <div className='screenbackground'>
-            <MainNavigationBar title="BAC Gauge"/>
+            
             <h2 className="addspaceabovex2"></h2>
                 
                 <CircularGaugeComponent >
@@ -222,6 +231,8 @@ class GaugeTester extends Component {
                 </CircularGaugeComponent>
 
 
+
+            </div>
 
             </div>
         );

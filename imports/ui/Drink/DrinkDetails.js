@@ -155,14 +155,20 @@ class DrinkDetails extends Component {
     }
 
 
+    handleBackButton() {
+        history.push('/drinksmain');
+    }
 
     render() {
         return (
             <div className="page-content">
+
+            <button className="btn info" onClick={this.handleBackButton.bind(this)}>Back</button>
                     
 
-                <h2 className="form-section_title">Drink</h2>
+                
                 <div className="form-section">
+                <h2 className="form-section_title">Drink</h2>
             
                     <label>Type</label>         
                     <select id="type" 
@@ -228,7 +234,7 @@ class DrinkDetails extends Component {
                         
                         
 
-                        <button className="button"
+                        <button className="btn info"
                         onClick={this.onSubmit}>Save</button>
                     
             </div>

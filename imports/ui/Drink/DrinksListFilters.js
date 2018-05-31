@@ -4,7 +4,8 @@ import { Session } from 'meteor/session';
 class DrinksListFilters extends Component {
     render() {
         return (
-            <div>
+            <div className="page-content">
+            
                 <label className="checkbox">
                     <input className="checkbox__box" type="checkbox" onChange={(e) => {
                         Session.set('showVisible', !e.target.checked)

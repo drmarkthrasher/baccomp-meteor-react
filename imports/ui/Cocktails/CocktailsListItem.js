@@ -15,10 +15,14 @@ class CocktailsListItem extends Component {
     }
 
     onGoToDetails(e) {
-        // history.push({
-        //   pathname: '/drinkdetails',
-        //   search: `id=${this.props._id}`
-        // })
+
+        //Note to self:  use "name" field for these since _id is not "string" in database.
+        //The id shows us as objectid.  
+
+        history.push({
+          pathname: '/cocktaildetails',
+          search: `name=${this.props.d_name}`
+        })
       }
 
 

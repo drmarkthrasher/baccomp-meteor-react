@@ -94,12 +94,22 @@ class Profile extends Component {
     }
 
 
+    handleBackButton() {
+        history.push('/dashboard');
+    }
+
+
     render() {
         return (
             
             <div className="page-content">
 
-                <h2 className="form-section_title">Personal Information</h2>
+            <button className="btn info" onClick={this.handleBackButton.bind(this)}>Back</button>
+
+                <div className="form-section">
+                    <h2 className="form-section_title">Personal Information</h2>
+                </div>
+                
                 <div className="form-section">
                     
                         <label>Name</label>
@@ -157,7 +167,7 @@ class Profile extends Component {
                 </div>
 
         
-                <button className="button"
+                <button className="btn info"
                         onClick={this.onSubmit.bind(this)}>Save Profile</button>
 
             </div>

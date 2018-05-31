@@ -19,10 +19,8 @@ class CocktailsMain extends Component {
     render() {
         return (
             <div>
-               
-                
-
-           <CocktailsList/>
+            
+                <CocktailsList/>
 
             </div>
         );
