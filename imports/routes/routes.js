@@ -12,13 +12,14 @@ import DriversMain from '../ui/Driver/DriversMain';
 import DriverDetails from '../ui/Driver/DriverDetails';
 import DrinksMain from '../ui/Drink/DrinksMain';
 import DrinkDetails from '../ui/Drink/DrinkDetails';
+import AddDrinkDetails from '../ui/Drink/AddDrinkDetails';
 import BACGauge from '../ui/BACGauge';
 import Profile from '../ui/Profile';
 import CocktailsMain from '../ui/Cocktails/CocktailsMain';
 import CocktailDetails from '../ui/Cocktails/CocktailDetails';
 
 const unauthenticatedPages = ['/', '/signup'];
-const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','/drinksmain',
+const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','/drinksmain','/adddrinkdetails',
     '/gaugetester','/drinkdetails','/profile','/cocktailsmain','/cocktaildetails'];
 
 export const onAuthChange = (isAuthenticated) => {
@@ -43,6 +44,7 @@ export const routes = (
       <Route path="/driverdetails" component={DriverDetails}/>
       <Route path="/drinksmain" component={DrinksMain}/>
       <Route path="/drinkdetails" component={DrinkDetails}/>
+      <Route path="/adddrinkdetails" component={AddDrinkDetails}/>
       <Route path="/bacgauge" component={BACGauge}/>
       <Route path="/profile" component={Profile}/>
       <Route path="/cocktailsmain" component={CocktailsMain}/>

@@ -91,7 +91,7 @@ class CocktailsList extends Component {
 
                 
                 <FlipMove maintainContainerHeight={true}>
-                {this.renderCocktailsListItems()}
+                    {this.renderCocktailsListItems()}
                 </FlipMove>
 
 
