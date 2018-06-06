@@ -42,9 +42,17 @@ class AddDrinkDetails extends Component {
         var year=this.state.year;
         var hour=this.state.hour;
         var minute=this.state.minute;
+
+        const date = new Date();
+        date.setDate(day);
+        date.setMonth(month);
+        date.setFullYear(year);
+        date.setHours(hour);
+        date.setMinutes(minute);
+        
     
         Meteor.call('drinks.insert', type, description, volume, alcohol, 
-        day, month, year, hour, minute,(err, res) => {
+        day, month, year, hour, minute,date,(err, res) => {
             if(!err) {
                 history.push('/drinksmain');
                 // this.handleModalClose();

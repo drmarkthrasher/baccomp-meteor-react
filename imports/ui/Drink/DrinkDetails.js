@@ -141,14 +141,16 @@ class DrinkDetails extends Component {
         const year = Session.get("year");
         const hour = Session.get("hour");
         const minute = Session.get("minute");
-        // const day = this.state.day;
-        // const month= this.state.month;
-        // const year = this.state.year;
-        // const hour = this.state.hour;
-        // const minute = this.state.minute;
+
+        const date = new Date();
+        date.setDate(day);
+        date.setMonth(month);
+        date.setFullYear(year);
+        date.setHours(hour);
+        date.setMinutes(minute);
 
        Meteor.call('drinks.save', id, type, description, volume, alcohol, day,
-            month, year, hour, minute, function(error,result){
+            month, year, hour, minute, date,function(error,result){
         })   
 
         history.push('/drinksmain');

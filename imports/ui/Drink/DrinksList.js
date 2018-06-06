@@ -21,7 +21,7 @@ class DrinksList extends Component {
             Meteor.subscribe('drinks');
             const drinks = Drinks.find({
                 visible: Session.get('showVisible')
-            }).fetch();
+            },{ sort: { date: -1 } }).fetch();
             this.setState({ drinks });
           })
     }

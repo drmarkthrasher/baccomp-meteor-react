@@ -15,7 +15,7 @@ if(Meteor.isServer) {
 Meteor.methods({
 
     'drinks.insert'(type, description, volume, alcohol, day, month,year,
-        hour,minute) {
+        hour,minute,date) {
 
         if(!this.userId) {
             throw new Meteor.Error('not-authorized');
@@ -30,7 +30,7 @@ Meteor.methods({
           }).validate({ type })
 
         Drinks.insert({ userId: Meteor.userId(), visible: true, type, description,
-            volume, alcohol, day, month, year, hour,minute});
+            volume, alcohol, day, month, year, hour,minute,date});
     },
     'drinks.setVisibility'(_id, visible) {
         if(!this.userId) {
@@ -88,7 +88,7 @@ Meteor.methods({
         
     }, 
     'drinks.save'(_id, type,description,volume,alcohol,day,
-        month,year,hour,minute) {
+        month,year,hour,minute,date) {
         if(!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
@@ -114,7 +114,8 @@ Meteor.methods({
                  month: month,
                  year: year,
                  hour: hour,
-                 minute: minute
+                 minute: minute,
+                 date: date
              }
          })
     },
