@@ -8,6 +8,7 @@
     "@babel/runtime": "^7.0.0-beta.44",
     "@syncfusion/ej2-react-buttons": "^16.1.35",
     "@syncfusion/ej2-react-calendars": "^16.1.37",
+    "@syncfusion/ej2-react-charts": "^16.1.40",
     "@syncfusion/ej2-react-circulargauge": "^16.1.32",
     "antd": "^3.5.3",
     "autosize": "^4.0.0",
