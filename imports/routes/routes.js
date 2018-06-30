@@ -14,13 +14,14 @@ import DrinksMain from '../ui/Drink/DrinksMain';
 import DrinkDetails from '../ui/Drink/DrinkDetails';
 import AddDrinkDetails from '../ui/Drink/AddDrinkDetails';
 import BACGauge from '../ui/BACGauge';
+import BACChart from '../ui/BACChart';
 import Profile from '../ui/Profile';
 import CocktailsMain from '../ui/Cocktails/CocktailsMain';
 import CocktailDetails from '../ui/Cocktails/CocktailDetails';
 
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','/drinksmain','/adddrinkdetails',
-    '/gaugetester','/drinkdetails','/profile','/cocktailsmain','/cocktaildetails'];
+    '/gaugetester','/bacchart','/drinkdetails','/profile','/cocktailsmain','/cocktaildetails'];
 
 export const onAuthChange = (isAuthenticated) => {
     const pathname = window.location.pathname;
@@ -46,6 +47,7 @@ export const routes = (
       <Route path="/drinkdetails" component={DrinkDetails}/>
       <Route path="/adddrinkdetails" component={AddDrinkDetails}/>
       <Route path="/bacgauge" component={BACGauge}/>
+      <Route path="/bacchart" component={BACChart}/>
       <Route path="/profile" component={Profile}/>
       <Route path="/cocktailsmain" component={CocktailsMain}/>
       <Route path="/cocktaildetails" component={CocktailDetails}/>

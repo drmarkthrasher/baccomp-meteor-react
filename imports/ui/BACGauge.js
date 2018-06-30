@@ -84,7 +84,7 @@ class GaugeTester extends Component {
 
             //use this to loop through and get drink info
             drinks.forEach( function(drink) {
-                console.log(drink.description);
+                // console.log(drink.description);
             })
         })
 
@@ -189,6 +189,11 @@ class GaugeTester extends Component {
         history.push('/dashboard');
     }
 
+    handleChartButton() {
+        clearInterval(myvar);
+        history.push('/bacchart');
+    }
+
     
 
     render() {
@@ -197,6 +202,8 @@ class GaugeTester extends Component {
             <div className="page-content">
 
             <button className="btn info" onClick={this.handleBackButton.bind(this)}>Back</button>
+
+            <button className="btn info" onClick={this.handleChartButton.bind(this)}>Time Chart</button>
 
             <div className='screenbackground'>
             
@@ -292,22 +299,7 @@ class GaugeTester extends Component {
                     </AxesDirective>
                 </CircularGaugeComponent>
 
-                <h2>Text to seperate items</h2>
-
-
-                
-                <ChartComponent id='charts' primaryXAxis={ { valueType: 'DateTime'} } 
-                    title="BAC vs Time"
-                    >
-                    <Inject services={[ColumnSeries, Tooltip, LineSeries, Legend, Category, DateTime]}></Inject>
-                    <SeriesCollectionDirective>
-                        <SeriesDirective dataSource = {this.state.data} xName='time' yName='bac' name='BAC %'>
-                        </SeriesDirective>
-                    </SeriesCollectionDirective>
-                </ChartComponent>
-                
-
-
+              
 
             </div>
 
