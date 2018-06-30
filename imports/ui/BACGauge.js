@@ -28,7 +28,10 @@ class GaugeTester extends Component {
         }
 
         myvar='';
+        timerID='';
         flag=false;
+
+        currentBAC=0;
 
 
     }
@@ -36,46 +39,13 @@ class GaugeTester extends Component {
     
     componentWillMount() {
 
-        // this.setState({ data: 
-        //     [{month: "Jan", sales:"35"},
-        //     {month: "Feb", sales:"28"},
-        //     {month: "Mar", sales:"34"},
-        //     {month: "Apr", sales:"32"},
-        //     {month: "May", sales:"40"},
-        //     {month: "Jun", sales:"32"},
-        //     {month: "Jul", sales:"35"},
-        //     {month: "Aug", sales:"55"},
-        //     {month: "Sep", sales:"38"},
-        //     {month: "Oct", sales:"30"},
-        //     {month: "Nov", sales:"25"},
-        //     {month: "Dec", sales:"32"},
-        // ]
-        // });
-
-        var time=new Date();
-
-        var time1=time.setHours(6);
-        var time2=time.setHours(7);
-        var time3=time.setHours(8);
-
-        this.setState({ data:
-            [{time: time1, bac:0.05},
-            {time: time2, bac:0.06},
-            {time: time3, bac:0.04}]
-        })
-
-
-        //this is command for adding to array in state
-        // this.setState({data: [...this.state.data, {month:"Junk",sales:50}]});
-       
-
-        
-    }
-     
-        
-
-
-    componentDidMount() {
+        Meteor.call('profiles.find',(err,res) => {
+            this.setState({
+                gender: res.gender,
+                age: res.age,
+                weight: res.weight
+            })
+        }) 
 
         Meteor.call('drinks.find',(err,res) => {
             const drinks=res;
@@ -86,29 +56,117 @@ class GaugeTester extends Component {
             drinks.forEach( function(drink) {
                 // console.log(drink.description);
             })
-        })
 
-        Meteor.call('profiles.find',(err,res) => {
-            this.setState({
-                gender: res.gender,
-                age: res.age,
-                weight: res.weight
-            })
-        })
+            
 
+            this.prepareBACChart();
+
+        })
+        
+       
 
         
+    }
+     
+        
 
-        this.onStartBACCalc();
+
+    componentDidMount() {
+
+        timerID=setInterval(() => this.prepareBACChart(),60000);
 
 
     }
 
     componentWillUnmount() {
-        clearInterval(myvar);
+        clearInterval(timerID);
     }
     
     
+    prepareBACChart() {
+        console.log("It is now time to prepare drinks for chart...")
+
+        var time = new Date();
+        var drinksessionstart=new Date();
+        drinksessionstart.setHours(drinksessionstart.getHours()-8);
+        console.log("Drink Session Start is "+drinksessionstart);
+
+        var presenttime=new Date();
+
+        datejson=[{"time":drinksessionstart,"bac":0.0}];
+
+        //timestep is 1 minute, 
+        var timestep = 1;
+
+        //reset BAC level
+        currentBAC=0.;
+
+        for(time = drinksessionstart; time<presenttime; time.setMinutes(time.getMinutes()+timestep)){
+                
+            
+
+            for (var drink of this.state.drinks){
+
+                if( drink.date.getYear()==time.getYear()
+                    &&drink.date.getMonth()==time.getMonth()
+                    &&drink.date.getDate()==time.getDate()
+                    &&drink.date.getHours()==time.getHours()
+                    &&drink.date.getMinutes()==time.getMinutes()){
+
+                    console.log(drink.description+" has same time at "+drink.date.getHours()+" "+drink.date.getMinutes());
+                
+                    this.computeBACIncrease(drink);
+
+                    newtime=JSON.stringify(time);
+                    newtime=new Date(JSON.parse(newtime));
+                
+                    // console.log("Push from drink match loop");
+                    datejson.push({"time":newtime,"bac":currentBAC})
+                   
+                
+                }
+
+                
+            }
+
+            //alcohol getting metabolized by body (0.015%/hour)
+            currentBAC=currentBAC-(0.015/60);
+            if(currentBAC<0) currentBAC=0;
+            
+            //for some reason, must convert time to string and then back to Date
+            newtime=JSON.stringify(time);
+            newtime=new Date(JSON.parse(newtime));
+
+            // console.log("New time is "+newtime);
+            datejson.push({"time":newtime,"bac":currentBAC});
+
+        }  //end of time loop
+        
+        this.setState({ data: datejson,
+            gaugevalue: currentBAC})
+        
+        
+        
+    }
+
+    computeBACIncrease(drink){
+        
+
+        var thisdrinkalcohol=drink.volume*29.6*drink.alcohol/100*0.789;
+        console.log(thisdrinkalcohol);
+
+        this.state.gender=="Male" ? r=0.68 : r=0.55;
+        var bodyweight=this.state.weight/2.205*1000;  //convert weight from lbs to grams
+        bacincrease=thisdrinkalcohol/bodyweight/r*100;
+        console.log(bacincrease);
+
+        currentBAC=currentBAC+bacincrease;
+    }
+
+
+
+
+
 
     onStartBACCalc(e) {
 
@@ -190,7 +248,7 @@ class GaugeTester extends Component {
     }
 
     handleChartButton() {
-        clearInterval(myvar);
+        clearInterval(timerID);
         history.push('/bacchart');
     }
 

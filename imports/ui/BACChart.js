@@ -66,28 +66,25 @@ class BACChart extends Component {
 
         
 
-        var time=new Date();
+        // var time=new Date();
 
-        var time1=time.setHours(6);
-        var time2=time.setHours(7);
-        var time3=time.setHours(8);
+        // var time1=time.setHours(6);
+        // var time2=time.setHours(7);
+        // var time3=time.setHours(8);
 
-        //this code shows how to convert to string and then back to Date
-        time1=JSON.stringify(time1);
-        time2=JSON.stringify(time2);
-        time3=JSON.stringify(time3);
-        time1=new Date(JSON.parse(time1));
-        time2=new Date(JSON.parse(time2));
-        time3=new Date(JSON.parse(time3));
+        // //this code shows how to convert to string and then back to Date
+        // time1=JSON.stringify(time1);
+        // time2=JSON.stringify(time2);
+        // time3=JSON.stringify(time3);
+        // time1=new Date(JSON.parse(time1));
+        // time2=new Date(JSON.parse(time2));
+        // time3=new Date(JSON.parse(time3));
 
-        this.setState({ data:
-            [{time: time1, bac:0.05},
-            {time: time2, bac:0.06},
-            {time: time3, bac:0.04}]
-        })
-
-        
-
+        // this.setState({ data:
+        //     [{time: time1, bac:0.05},
+        //     {time: time2, bac:0.06},
+        //     {time: time3, bac:0.04}]
+        // })
 
         //this is command for adding to array in state
         // this.setState({data: [...this.state.data, {month:"Junk",sales:50}]});
@@ -128,7 +125,7 @@ class BACChart extends Component {
 
         for(time = drinksessionstart; time<presenttime; time.setMinutes(time.getMinutes()+timestep)){
                 
-            // console.log(time);
+            
 
             for (var drink of this.state.drinks){
 
@@ -140,9 +137,6 @@ class BACChart extends Component {
 
                     console.log(drink.description+" has same time at "+drink.date.getHours()+" "+drink.date.getMinutes());
                 
-                    
-                    //make a change...
-                    
                     this.computeBACIncrease(drink);
 
                     newtime=JSON.stringify(time);
@@ -152,31 +146,24 @@ class BACChart extends Component {
                     datejson.push({"time":newtime,"bac":currentBAC})
                    
                 
-                }else {
-
-                    //alcohol getting metabolized by body
-                    currentBAC=currentBAC-(0.015/120);  //WHY IS THIS 60 OR 120?????
-                    if(currentBAC<0) currentBAC=0;
-                    // console.log(currentBAC);
-                    
-                    //for some reason, must convert time to string and then back to Date
-                    newtime=JSON.stringify(time);
-                    newtime=new Date(JSON.parse(newtime));
-
-                    // console.log("New time is "+newtime);
-                    datejson.push({"time":newtime,"bac":currentBAC});
-                    
                 }
 
                 
             }
 
+            //alcohol getting metabolized by body
+            currentBAC=currentBAC-(0.015/60);
+            if(currentBAC<0) currentBAC=0;
             
+            //for some reason, must convert time to string and then back to Date
+            newtime=JSON.stringify(time);
+            newtime=new Date(JSON.parse(newtime));
 
-
+            // console.log("New time is "+newtime);
+            datejson.push({"time":newtime,"bac":currentBAC});
 
         }  //end of time loop
-        console.log(datejson);
+        
         this.setState({ data: datejson})
         chart.refresh();
         
@@ -214,21 +201,6 @@ class BACChart extends Component {
         //play with json array and adding items...
         datejson=[{"date":drinksessioncutoff,"bac":0.0}];
 
-          // this.setState({ data:
-                //     [{time: time1, bac:0.05},
-                //     {time: time2, bac:0.06},
-                //     {time: time3, bac:0.04}]
-                // })
-
-                // self.setState({ data:
-                //     [{time: drinksessionstart, bac:0.0}
-                //     ]
-                // })
-
-                //this is command for adding to array in state
-                // self.setState({data: [...self.state.data, {time:time,bac:.05}]});
-
-        
         flag ? (clearInterval(myvar), flag=false) :  myvar = Meteor.setInterval(function () {
             flag=true;
 
@@ -378,19 +350,19 @@ class BACChart extends Component {
     }
 
 
-    handleChartRefresh() {
+    // handleChartRefresh() {
 
-        console.log(this.state.data);
+    //     console.log(this.state.data);
 
-        chart.title="New BAC Chart";
-        chart.series[0].dataSource=this.state.data;
-        chart.series[0].xName='time';
-        chart.series[0].yName='bac';
-        chart.primaryXAxis.valueType='DateTime';
-        // chart.primaryXAxis.title="Drink it up";
-        chart.refresh();
-        console.log(chart);
-    }
+    //     chart.title="New BAC Chart";
+    //     chart.series[0].dataSource=this.state.data;
+    //     chart.series[0].xName='time';
+    //     chart.series[0].yName='bac';
+    //     chart.primaryXAxis.valueType='DateTime';
+    //     // chart.primaryXAxis.title="Drink it up";
+    //     chart.refresh();
+    //     console.log(chart);
+    // }
 
 
 
@@ -398,7 +370,6 @@ class BACChart extends Component {
         return (
             <div className="page-content">
                 <button className="btn info" onClick={this.handleBackButton.bind(this)}>Back</button>
-                <button className="btn info" onClick={this.handleChartRefresh.bind(this)}>Refresh</button>
 
                 <ChartComponent id='charts' primaryXAxis={ { valueType: 'DateTime'} } 
                     ref={g => chart=g} //this line links chart above to this component!

@@ -127,11 +127,11 @@ const styles = {
                         <Divider/>
                         <MenuItem value="Profile" onClick={ this.gotoProfile.bind(this)}>Profile</MenuItem>
                         {/*<MenuItem value="Driver" onClick={ this.gotoDriversMain.bind(this)}>Driver</MenuItem>*/}
-                        <MenuItem value="Drinks" onClick={this.gotoDrinksMain.bind(this)}>Drinks</MenuItem>
+                        <MenuItem value="Drinks" onClick={this.gotoDrinksMain.bind(this)}>My Drinks</MenuItem>
                         {/*<MenuItem value="Track" onClick={this.gotoTracksMain.bind(this)} >Track</MenuItem>*/}
                         {/*<MenuItem value="Car" onClick={this.gotoCarsMain.bind(this)}>Car</MenuItem>*/}
                         <MenuItem value="BACGauge" onClick={this.gotoBACGauge.bind(this)}>BAC Gauge</MenuItem>
-                        <MenuItem value="Cocktails" onClick={this.gotoCocktailsMain.bind(this)}>Cocktails</MenuItem>
+                        <MenuItem value="Cocktails" onClick={this.gotoCocktailsMain.bind(this)}>Bartender</MenuItem>
                         
                         </Drawer>
                 </div>
