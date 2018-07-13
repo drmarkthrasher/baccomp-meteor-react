@@ -34,9 +34,9 @@ class GaugeTester extends Component {
         currentBAC=0;
 
 
+
     }
 
-    
     componentWillMount() {
 
         Meteor.call('profiles.find',(err,res) => {
@@ -64,8 +64,6 @@ class GaugeTester extends Component {
         })
         
        
-
-        
     }
      
         
@@ -73,6 +71,7 @@ class GaugeTester extends Component {
 
     componentDidMount() {
 
+        //interval is 60000 (or 60 sec...1 min)
         timerID=setInterval(() => this.prepareBACChart(),60000);
 
 
@@ -141,6 +140,9 @@ class GaugeTester extends Component {
             datejson.push({"time":newtime,"bac":currentBAC});
 
         }  //end of time loop
+
+        //format for decimal place
+        currentBAC=currentBAC.toFixed(3);
         
         this.setState({ data: datejson,
             gaugevalue: currentBAC})
@@ -161,6 +163,8 @@ class GaugeTester extends Component {
         console.log(bacincrease);
 
         currentBAC=currentBAC+bacincrease;
+        
+        
     }
 
 
@@ -232,6 +236,7 @@ class GaugeTester extends Component {
             
             var bodyweight=self.state.weight/2.205*1000;  //convert weight from lbs to grams
             bac=totalalcoholconsumed/bodyweight/r*100-0.015*startdrinking;
+        
             console.log("Bac is " +bac);
 
             self.setState({ 
@@ -265,7 +270,7 @@ class GaugeTester extends Component {
 
             <div className='screenbackground'>
             
-            <h2 className="addspaceabovex2"></h2>
+                <h2 className="addspaceabovex2"></h2>
 
             
                 
@@ -357,7 +362,7 @@ class GaugeTester extends Component {
                     </AxesDirective>
                 </CircularGaugeComponent>
 
-              
+                <p  className="secondaryfont">Current BAC % is {this.state.gaugevalue}</p>
 
             </div>
 

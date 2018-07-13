@@ -1,0 +1,9 @@
+{
+    "name": "BAC Computaton",
+    "short_name": "BACComp",
+    "start_url": "/client/main.html",
+    "scope": ".",
+    "display": "standalone",
+    "orientation": "portrait-primary"
+
+}
