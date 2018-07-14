@@ -24,7 +24,9 @@ class GaugeTester extends Component {
             gender: "Male",
             age: 21,
             weight: 200,
-            data: []    
+            data: [],
+            maxBACinSession: .0,
+            timeToSober: 0.    
         }
 
         myvar='';
@@ -83,7 +85,6 @@ class GaugeTester extends Component {
     
     
     prepareBACChart() {
-        console.log("It is now time to prepare drinks for chart...")
 
         var time = new Date();
         var drinksessionstart=new Date();
@@ -142,10 +143,17 @@ class GaugeTester extends Component {
         }  //end of time loop
 
         //format for decimal place
-        currentBAC=currentBAC.toFixed(3);
+        // currentBAC=currentBAC.toFixed(3);
+        console.log("Current BAC is "+currentBAC);
+
+        //calculate time until sober (BAC limit of 0.08)
+        var sobertime=((currentBAC-0.08)/0.015*60).toFixed(0);
+        sobertime>0 ? this.setState({timeToSober: sobertime}) : this.setState({timeToSober:0})
         
-        this.setState({ data: datejson,
-            gaugevalue: currentBAC})
+        this.setState({ 
+            data: datejson,
+            gaugevalue: currentBAC.toFixed(3)
+            })
         
         
         
@@ -155,14 +163,16 @@ class GaugeTester extends Component {
         
 
         var thisdrinkalcohol=drink.volume*29.6*drink.alcohol/100*0.789;
-        console.log(thisdrinkalcohol);
 
         this.state.gender=="Male" ? r=0.68 : r=0.55;
         var bodyweight=this.state.weight/2.205*1000;  //convert weight from lbs to grams
         bacincrease=thisdrinkalcohol/bodyweight/r*100;
-        console.log(bacincrease);
 
         currentBAC=currentBAC+bacincrease;
+
+        if(currentBAC>this.state.maxBACinSession){
+            this.setState({ maxBACinSession:currentBAC.toFixed(3)});
+        }
         
         
     }
@@ -345,7 +355,7 @@ class GaugeTester extends Component {
                                         color: 'black'
                                     }}>
                                 </PointerDirective>
-                                <PointerDirective value={.2} 
+                                <PointerDirective value={this.state.maxBACinSession} 
                                     type='Marker'
                                     markerShape='InvertedTriangle'
                                     radius='100%'
@@ -362,7 +372,9 @@ class GaugeTester extends Component {
                     </AxesDirective>
                 </CircularGaugeComponent>
 
-                <p  className="secondaryfont">Current BAC % is {this.state.gaugevalue}</p>
+                <p className="secondaryfont">Current BAC % : {this.state.gaugevalue}</p>
+                <p className="secondaryfont">Max BAC % : {this.state.maxBACinSession}</p>
+                <p className="secondaryfont">Time (minutes) until Sober : {this.state.timeToSober}</p>
 
             </div>
 
