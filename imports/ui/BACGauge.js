@@ -144,7 +144,6 @@ class GaugeTester extends Component {
 
         //format for decimal place
         // currentBAC=currentBAC.toFixed(3);
-        console.log("Current BAC is "+currentBAC);
 
         //calculate time until sober (BAC limit of 0.08)
         var sobertime=((currentBAC-0.08)/0.015*60).toFixed(0);
