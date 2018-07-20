@@ -97,6 +97,11 @@ const styles = {
         this.closeDrawer();
     }
 
+    gotoBarFinder = (event) => {
+        history.push('/barfinder')
+        this.closeDrawer();
+    }
+
     
 
 
@@ -132,7 +137,7 @@ const styles = {
                         {/*<MenuItem value="Car" onClick={this.gotoCarsMain.bind(this)}>Car</MenuItem>*/}
                         <MenuItem value="BACGauge" onClick={this.gotoBACGauge.bind(this)}>BAC Gauge</MenuItem>
                         <MenuItem value="Cocktails" onClick={this.gotoCocktailsMain.bind(this)}>Bartender</MenuItem>
-                        
+                        <MenuItem value="BarFinder" onClick={this.gotoBarFinder.bind(this)}>Bar Finder</MenuItem>
                         </Drawer>
                 </div>
             </MuiThemeProvider>

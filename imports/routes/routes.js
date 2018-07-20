@@ -18,10 +18,11 @@ import BACChart from '../ui/BACChart';
 import Profile from '../ui/Profile';
 import CocktailsMain from '../ui/Cocktails/CocktailsMain';
 import CocktailDetails from '../ui/Cocktails/CocktailDetails';
+import BarFinder from '../ui/BarFinder';
 
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','/drinksmain','/adddrinkdetails',
-    '/gaugetester','/bacchart','/drinkdetails','/profile','/cocktailsmain','/cocktaildetails'];
+    '/gaugetester','/bacchart','/drinkdetails','/profile','/cocktailsmain','/cocktaildetails','/barfinder'];
 
 export const onAuthChange = (isAuthenticated) => {
     const pathname = window.location.pathname;
@@ -51,6 +52,7 @@ export const routes = (
       <Route path="/profile" component={Profile}/>
       <Route path="/cocktailsmain" component={CocktailsMain}/>
       <Route path="/cocktaildetails" component={CocktailDetails}/>
+      <Route path="/barfinder" component={BarFinder}/>
       <Route component={NotFound}/>
     </Switch>
   </Router>

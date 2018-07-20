@@ -15,6 +15,7 @@ import '../imports/startup/simple-schema-configuration';
 
  
 Meteor.startup(() => {
+  GoogleMaps.load();
   Session.set('showVisible', true);
   ReactDOM.render(routes, document.getElementById('app'));
 });

@@ -4,6 +4,8 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import theme from '../client/styles/material-ui-theme';
 import MainNavigationBar from './MainNavigationBar';
 
+import history from '../routes/history';
+
 
 
 
@@ -39,6 +41,23 @@ class DashBoard extends Component {
 
 
   }
+
+
+  gotoDrinksMain = (event) => {
+    history.push('/drinksmain');
+  }
+
+  gotoBACGauge = (event) => {
+    history.push('/bacgauge')
+  }
+
+  gotoCocktailsMain = (event) => {
+    history.push('/cocktailsmain')
+  }
+
+  gotoBarFinder = (event) => {
+    history.push('/barfinder')
+  }
   
     
     render() {
@@ -50,6 +69,28 @@ class DashBoard extends Component {
           <div>
             
             <MainNavigationBar title='BAC Comp'/> 
+
+            <div className="top-container">        
+              <img className="img-top" src="cocktail.png" />
+            </div>
+            
+            <div className="button-row">
+              <button className="homebutton" 
+                onClick={this.gotoDrinksMain.bind(this)}>
+                <img src="mydrinks.png" width="50px" height="50px"/> My Drinks</button>
+              <button className="homebutton"
+                onClick={this.gotoBACGauge.bind(this)}>
+                <img src="bacgauge.png" width="50px" height="50px"/> BAC %</button>
+            </div>
+
+            <div className="button-row">
+              <button className="homebutton"
+                onClick={this.gotoCocktailsMain.bind(this)}>
+                <img src="bartender.png" width="50px" height="50px"/> Bartender</button>
+              <button className="homebutton"
+                onClick={this.gotoBarFinder.bind(this)}>
+                <img src="barfinder.png" width="50px" height="50px"/> Finder</button>
+            </div>
           
           </div>
           </MuiThemeProvider>
