@@ -12,6 +12,7 @@
     "@syncfusion/ej2-react-circulargauge": "^16.1.32",
     "antd": "^3.5.3",
     "autosize": "^4.0.0",
+    "axios": "^0.18.0",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
     "indexof": "0.0.1",
