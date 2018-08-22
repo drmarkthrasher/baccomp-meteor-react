@@ -19,6 +19,7 @@ import Profile from '../ui/Profile';
 import CocktailsMain from '../ui/Cocktails/CocktailsMain';
 import CocktailDetails from '../ui/Cocktails/CocktailDetails';
 import BarFinder from '../ui/BarFinder';
+import BarFinderMain from '../ui/BarFinder/BarFinderMain';
 
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','/drinksmain','/adddrinkdetails',
@@ -52,7 +53,7 @@ export const routes = (
       <Route path="/profile" component={Profile}/>
       <Route path="/cocktailsmain" component={CocktailsMain}/>
       <Route path="/cocktaildetails" component={CocktailDetails}/>
-      <Route path="/barfinder" component={BarFinder}/>
+      <Route path="/barfinder" component={BarFinderMain}/>
       <Route component={NotFound}/>
     </Switch>
   </Router>
