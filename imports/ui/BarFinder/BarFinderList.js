@@ -15,7 +15,7 @@ class BarFinderList extends Component {
         super(props);
 
         this.state = {
-            term: 'liquor',
+            term: 'liquor,bar',
             latitude:'',
             longitude:'',
             locations: []

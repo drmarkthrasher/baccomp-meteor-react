@@ -4,12 +4,12 @@ module.exports = {
       // TODO: set host address, username, and authentication method
       host: '204.48.30.204',
       username: 'root',
-      // pem: './path/to/pem'
-      password: '7qsD7sW$'
+      //use pem if using SSH keys
+      pem: '~/.ssh/id_rsa'
+      //password: '7qsD7sW$'
       // or neither for authenticate from ssh-agent
     }
   },
-
 
   app: {
     // TODO: change app name and path
@@ -27,14 +27,15 @@ module.exports = {
     env: {
       // TODO: Change to your app's url
       // If you are using ssl, it needs to start with https://
-      ROOT_URL: 'http://204.48.30.204',
+      ROOT_URL: 'https://204.48.30.204',
       MONGO_URL: 'mongodb://mongodb/meteor',
       MONGO_OPLOG_URL: 'mongodb://mongodb/local',
     },
 
     docker: {
       // change to 'abernix/meteord:base' if your app is using Meteor 1.4 - 1.5
-      image: 'abernix/meteord:node-8.4.0-base',
+       image: 'abernix/meteord:node-8.4.0-base',
+      //	image: 'abernix/meteord:base',
     },
 
     // Show progress bar while uploading bundle to server
@@ -53,12 +54,13 @@ module.exports = {
   // Use the proxy to setup ssl or to route requests to the correct
   // app when there are several apps
 
-  // proxy: {
-  //   domains: 'mywebsite.com,www.mywebsite.com',
+     proxy: {
+	     domains: 'baccomp.club',
 
-  //   ssl: {
+    	 ssl: {
   //     // Enable Let's Encrypt
-  //     letsEncryptEmail: 'email@domain.com'
-  //   }
-  // }
+      	 letsEncryptEmail: 'drmarkthrasher@gmail.com',
+	forceSSL: true,
+    	 }
+     }
 };
