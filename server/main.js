@@ -5,6 +5,7 @@ import '../imports/api/drivers';
 import '../imports/api/drinks';
 import '../imports/api/profiles';
 import '../imports/api/cocktails';
+import '../imports/api/favorites';
 import '../imports/startup/simple-schema-configuration';
 
 Meteor.startup(() => {

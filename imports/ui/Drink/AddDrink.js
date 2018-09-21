@@ -40,6 +40,10 @@ class AddDrink extends Component {
      handleBackButton() {
         history.push('/dashboard');
     }
+
+    handleFavorites() {
+        history.push('/favoritesmain');
+    }
     
     render() {
         return (
@@ -49,7 +53,7 @@ class AddDrink extends Component {
 
                 <button className="btn info" onClick={this.handleNewDrink.bind(this)}>Add Drink</button>
             
-                  
+                <button className="btn info" onClick={this.handleFavorites.bind(this)}>Favorites</button>
             </div>
         );
     }

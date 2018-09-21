@@ -18,12 +18,15 @@ import BACChart from '../ui/BACChart';
 import Profile from '../ui/Profile';
 import CocktailsMain from '../ui/Cocktails/CocktailsMain';
 import CocktailDetails from '../ui/Cocktails/CocktailDetails';
-import BarFinder from '../ui/BarFinder';
 import BarFinderMain from '../ui/BarFinder/BarFinderMain';
+import FavoritesMain from '../ui/Favorites/FavoritesMain';
+import AddFavoriteDetails from '../ui/Favorites/AddFavoriteDetails';
+import FavoriteDetails from '../ui/Favorites/FavoriteDetails';
 
 const unauthenticatedPages = ['/', '/signup'];
 const authenticatedPages = ['/dashboard','/driversmain','/driverdetails','/drinksmain','/adddrinkdetails',
-    '/gaugetester','/bacchart','/drinkdetails','/profile','/cocktailsmain','/cocktaildetails','/barfinder'];
+    '/gaugetester','/bacchart','/drinkdetails','/profile','/cocktailsmain','/cocktaildetails','/barfinder',
+    '/favoritesmain','/addfavoritedetails','/favoritedetails'];
 
 export const onAuthChange = (isAuthenticated) => {
     const pathname = window.location.pathname;
@@ -54,6 +57,9 @@ export const routes = (
       <Route path="/cocktailsmain" component={CocktailsMain}/>
       <Route path="/cocktaildetails" component={CocktailDetails}/>
       <Route path="/barfinder" component={BarFinderMain}/>
+      <Route path="/favoritesmain" component={FavoritesMain}/>
+      <Route path="/addfavoritedetails" component={AddFavoriteDetails}/>
+      <Route path="/favoritedetails" component={FavoriteDetails}/>
       <Route component={NotFound}/>
     </Switch>
   </Router>
